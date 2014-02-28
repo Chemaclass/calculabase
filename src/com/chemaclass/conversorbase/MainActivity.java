@@ -1,16 +1,13 @@
 package com.chemaclass.conversorbase;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -26,31 +23,15 @@ import com.chemaclass.conversorbase.base.Decimal;
 import com.chemaclass.conversorbase.base.Hexadecimal;
 import com.chemaclass.conversorbase.base.Octal;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
-	private enum Conversor {
-
-		Binary, Octal, Hexadecimal, Decimal
-	}
-
-	/** Tipo de base para la salida */
-	private static Conversor conversorOutput = Conversor.Binary;
-	/** Base de la cual convertir */
-	private Base baseInput;
-
-	private Spinner spInput, spOutput;
-	private EditText etInput;
-	private EditText etOutput;
-	private static EditText etConsola;
-	private Button btConvertir, btInvertir;
-	private LinearLayout layoutBtnHexadecimal;
-	private Button btA, btB, btC, btD, btE, btF;
-	private Button btCleanInput;
-
+	protected Button btConvertir, btInvertir;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		super.onCreate(savedInstanceState);
+		
 		init();
 	}
 
@@ -68,24 +49,10 @@ public class MainActivity extends Activity {
 
 	private void init() {
 
-		spInput = (Spinner) findViewById(R.id.spInput);
-		spOutput = (Spinner) findViewById(R.id.spOutput);
-		etInput = (EditText) findViewById(R.id.etInput);
-		etOutput = (EditText) findViewById(R.id.etOutput);
-		etConsola = (EditText) findViewById(R.id.etConsola);
-		// etConsola.setKeyListener(null);
+		
 		btConvertir = (Button) findViewById(R.id.btConvertir);
 		btInvertir = (Button) findViewById(R.id.btInvertir);
-		etOutput.setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				return true;
-			}
-		});
-		etOutput.setFocusable(false);
-		etConsola.setFocusable(false);
-		etConsola.setClickable(true);
-
+		
 		btConvertir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -98,152 +65,8 @@ public class MainActivity extends Activity {
 				invertir();
 			}
 		});
-
-		// Preparamos el adapter
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		adapter.add(getResources().getString(R.string.binary)); // binario
-		adapter.add(getResources().getString(R.string.octal)); // octal
-		adapter.add(getResources().getString(R.string.decimal)); // decimal
-		adapter.add(getResources().getString(R.string.hexadecimal)); // hexadecimal
-		// añadimos el adapter a nuestros spinner
-		spInput.setAdapter(adapter);
-		spInput.setSelection(2);// Decimal-> 3
-		spOutput.setAdapter(adapter);
-		spOutput.setSelection(0);// Binario-> 0
-
-		spInput.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> adapter, View view,
-					int position, long id) {
-				// ocultar los botones
-				layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
-				switch (position) {
-				case 0: // Binario
-					baseInput = new Binary();
-					break;
-				case 1: // Octal
-					baseInput = new Octal();
-					break;
-				case 2: // Decimal
-					baseInput = new Decimal();
-					break;
-				case 3: // Hexadecimal
-					baseInput = new Hexadecimal();
-					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
-					break;
-				}
-				// msg("input: " + baseInput.me(), 0);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> adapter) {
-			}
-			// TODO Auto-generated method stub
-		});
-		spOutput.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> adapter, View view,
-					int position, long id) {
-				switch (position) {
-				case 0: // Binario
-					conversorOutput = Conversor.Binary;
-					break;
-				case 1: // Octal
-					conversorOutput = Conversor.Octal;
-					break;
-				case 2: // Decimal
-					conversorOutput = Conversor.Decimal;
-					break;
-				case 3: // Hexadecimal
-					conversorOutput = Conversor.Hexadecimal;
-					break;
-				}
-				// msg("output: " + conversorOutput.name(), 0);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> adapter) {
-			}
-		});
-		// Inicializar el layout y los botones de las letras hexadecimales
-		initLayoutHexadecimal();
-		btCleanInput = (Button) findViewById(R.id.btCleanInput);
-		btCleanInput.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				etInput.setText(null);
-			}
-		});
 	}
-
-	/**
-	 * Inicializar el layout y los botones de las letras
-	 */
-	private void initLayoutHexadecimal() {
-		layoutBtnHexadecimal = (LinearLayout) findViewById(R.id.layoutBtnHexadecimal);
-		btA = (Button) findViewById(R.id.btA);
-		btB = (Button) findViewById(R.id.btB);
-		btC = (Button) findViewById(R.id.btC);
-		btD = (Button) findViewById(R.id.btD);
-		btE = (Button) findViewById(R.id.btE);
-		btF = (Button) findViewById(R.id.btF);
-		btA.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("A");
-			}
-		});
-		btB.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("B");
-			}
-		});
-		btC.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("C");
-			}
-		});
-		btD.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("D");
-			}
-		});
-		btE.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("E");
-			}
-		});
-		btF.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				printLetter("F");
-			}
-		});
-	}
-
-	/**
-	 * Escribir la letra en la posición del input que esté el cursor
-	 * 
-	 * @param letter
-	 *            letra a escribir
-	 */
-	private void printLetter(String letter) {
-		String input = etInput.getText().toString();
-		// Obtenemos la posición actual del cursor
-		int start = etInput.getSelectionStart();
-		// introducimos la letra A en la posición del cursor
-		String s = input.substring(0, start) + letter + input.substring(start);
-		etInput.setText(s);
-		// colocamos el cursor delante de la letra puesta
-		etInput.setSelection(start + 1);
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -325,7 +148,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Llevar a cabo la conversión entre los dos números en bases distintas
 	 */
-	private void convertir() {
+	protected void convertir() {
 		etConsola.setText(null);
 		String input = etInput.getText().toString();
 		String result = "...result...";
@@ -369,7 +192,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Invierte input<->Output
 	 */
-	private void invertir() {
+	protected void invertir() {
 		// Cambiamos los Spinners
 		int inputSelect = spInput.getSelectedItemPosition();
 		int outputSelect = spOutput.getSelectedItemPosition();
