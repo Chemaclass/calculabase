@@ -173,20 +173,7 @@ public class MainActivity extends BaseActivity {
 			 * conversorOutput.name() + ": " + "\n");
 			 */
 
-			switch (conversorOutput) {
-			case Binary:
-				result = baseInput.toBinary(input);
-				break;
-			case Octal:
-				result = baseInput.toOctal(input);
-				break;
-			case Decimal:
-				result = baseInput.toDecimal(input);
-				break;
-			case Hexadecimal:
-				result = baseInput.toHexadecimal(input);
-				break;
-			}
+			result = Utils.getConversion(input, baseInput, conversorOutput);
 			etOutput.setText(result); // resultado
 			log("\n" + getTextResult()); // consola
 			// log("-------END---------\n");

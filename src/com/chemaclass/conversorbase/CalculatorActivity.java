@@ -8,8 +8,12 @@ import android.widget.Button;
 
 public class CalculatorActivity extends BaseActivity {
 
+	enum TipoOperacion {
+		sumar, restar, multiplicar, dividir;
+	}
+
 	protected Button btSumar, btRestar, btMultiplicar, btDividir;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_calculator);
@@ -27,25 +31,25 @@ public class CalculatorActivity extends BaseActivity {
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//sumar();
+				operar(TipoOperacion.sumar);
 			}
 		});
 		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//restar();
+				operar(TipoOperacion.restar);
 			}
 		});
 		btMultiplicar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//ultiplicar();
+				operar(TipoOperacion.multiplicar);
 			}
 		});
 		btDividir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//dividir();
+				operar(TipoOperacion.dividir);
 			}
 		});
 	}
@@ -67,16 +71,54 @@ public class CalculatorActivity extends BaseActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	protected void convertir() {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Abstraer a nivel de lógica las operaciones para que todas sean
+	 * controladas por este método
+	 * 
+	 * @param to TipoOoperacion
+	 */
+	private void operar(TipoOperacion to) {
+		switch (to) {
+		case sumar:
+			sumar();
+			break;
+		case restar:
+			restar();
+			break;
+		case multiplicar:
+			multiplicar();
+			break;
+		case dividir:
+			dividir();
+			break;
+		}
 	}
 
-	@Override
-	protected void invertir() {
-		// TODO Auto-generated method stub
-		
+	private void sumar() {
+		log("Sumar");
+		String f = etInput.getText().toString();
+		String s = etOutput.getText().toString();
+
+		String fDec = Utils.getConversion(f, baseInput, Conversor.Decimal);
+		String sDec = Utils.getConversion(s, baseOutput, Conversor.Decimal);
+
+		String resultado = ""
+				+ (Integer.parseInt(fDec) + Integer.parseInt(sDec));
+
+		log("\n" + "La suma es: " + resultado); // consola
+
+	}
+
+	private void restar() {
+		log("restar");
+	}
+
+	private void multiplicar() {
+		log("multiplicar");
+	}
+
+	private void dividir() {
+		log("dividir");
 	}
 
 }

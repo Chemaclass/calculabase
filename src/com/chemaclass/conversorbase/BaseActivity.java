@@ -27,7 +27,7 @@ public abstract class BaseActivity extends Activity {
 	}
 
 	/** Tipo de base para la salida */
-	protected static Conversor conversorOutput = Conversor.Binary,
+	protected Conversor conversorOutput = Conversor.Binary,
 			conversorInput = Conversor.Decimal;
 
 	/** Base de la cual convertir */
@@ -246,9 +246,9 @@ public abstract class BaseActivity extends Activity {
 		etConsola.setText(etConsola.getText() + s + "\n");
 	}
 
-	protected abstract void convertir();
+	/*protected abstract void convertir();
 	
-	protected abstract void invertir();
+	protected abstract void invertir();*/
 	
 	/**
 	 * Muestra un Toast. Para la duración larga se le debe pasar un 1 como

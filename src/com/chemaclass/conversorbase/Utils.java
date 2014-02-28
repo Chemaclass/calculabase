@@ -2,7 +2,40 @@ package com.chemaclass.conversorbase;
 
 import java.util.Calendar;
 
+import com.chemaclass.conversorbase.BaseActivity.Conversor;
+import com.chemaclass.conversorbase.base.Base;
+
 public class Utils {
+
+	/**
+	 * Obtener la conversión de un número conociendo su base en la base que se
+	 * quiera
+	 * 
+	 * @param input
+	 *            Número base
+	 * @param baseInput
+	 *            Base input de la que se quiere convertir
+	 * @param conversorOutput
+	 *            Base de salida a la que se quiere convertir
+	 * @return
+	 */
+	public static String getConversion(String input, Base baseInput,
+			Conversor conversorOutput) {
+		switch (conversorOutput) {
+		case Binary:
+			return baseInput.toBinary(input);
+
+		case Octal:
+			return baseInput.toOctal(input);
+
+		case Decimal:
+			return baseInput.toDecimal(input);
+
+		case Hexadecimal:
+			return baseInput.toHexadecimal(input);
+		}
+		return null;
+	}
 
 	public static String getBinaryByDecimal(String s) {
 		return String.valueOf(Integer.parseInt(s, 10));
@@ -37,7 +70,8 @@ public class Utils {
 		} else if (base == 16) {
 			// Nos aseguramos que hayan de 4 y 4, para poder hacer la división
 			if ((residuo = resultado.length() % 4) != 0) {
-				String s = (residuo == 1) ? "000" : ((residuo == 2) ? "00" : "0");
+				String s = (residuo == 1) ? "000" : ((residuo == 2) ? "00"
+						: "0");
 				resultado = s + resultado;
 			}
 		}
