@@ -26,6 +26,7 @@
     <string name="action_aboutme">About me</string>
     <string name="action_options">Options</string>
     <string name="action_calculator">Calculator</string>
+    <string name="action_return">Return</string>
     <string name="action_twitter">Follow me on Twitter!</string>
     <string name="description">Converter by binary, octal, decimal and hexadecimal to all.
 Explanation of each step in the conversion.

@@ -296,6 +296,7 @@ public class MainActivity extends Activity {
 			intent = new Intent(this,CalculatorActivity.class);
 			startActivity(intent);
 			return true;
+		
 		default:
 			return super.onOptionsItemSelected(item);
 		}
