@@ -1,7 +1,6 @@
 package com.chemaclass.conversorbase;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +8,8 @@ import android.widget.Button;
 
 public class CalculatorActivity extends BaseActivity {
 
+	protected Button btSumar, btRestar, btMultiplicar, btDividir;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_calculator);
@@ -18,21 +19,35 @@ public class CalculatorActivity extends BaseActivity {
 
 	private void init() {
 
-		/*btConvertir = (Button) findViewById(R.id.btConvertir);
-		btInvertir = (Button) findViewById(R.id.btInvertir);
+		btSumar = (Button) findViewById(R.id.btSumar);
+		btRestar = (Button) findViewById(R.id.btRestar);
+		btMultiplicar = (Button) findViewById(R.id.btMultiplicar);
+		btDividir = (Button) findViewById(R.id.btDividir);
 
-		btConvertir.setOnClickListener(new View.OnClickListener() {
+		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				convertir();
+				//sumar();
 			}
 		});
-		btInvertir.setOnClickListener(new View.OnClickListener() {
+		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				invertir();
+				//restar();
 			}
-		});*/
+		});
+		btMultiplicar.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//ultiplicar();
+			}
+		});
+		btDividir.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				//dividir();
+			}
+		});
 	}
 
 	@Override

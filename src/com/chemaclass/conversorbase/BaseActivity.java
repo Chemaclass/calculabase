@@ -67,15 +67,7 @@ public abstract class BaseActivity extends Activity {
 		etInput = (EditText) findViewById(R.id.etInput);
 		etOutput = (EditText) findViewById(R.id.etOutput);
 		etConsola = (EditText) findViewById(R.id.etConsola);
-		// etConsola.setKeyListener(null);
-
-		etOutput.setOnKeyListener(new View.OnKeyListener() {
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				return true;
-			}
-		});
-		etOutput.setFocusable(false);
+		
 		etConsola.setFocusable(false);
 		etConsola.setClickable(true);
 

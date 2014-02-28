@@ -5,20 +5,13 @@
     android:orientation="vertical"
     tools:context=".CalculatorActivity" >
 
+    
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="IMPLEMENTANDO CALCULADORA..."
-        android:textSize="22sp" />
-
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/app_name"
+        android:text="@string/title_activity_calculator"
         android:textSize="22sp" />
 
     <LinearLayout
@@ -37,7 +30,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/input" />
+                android:text="@string/first" />
 
             <Spinner
                 android:id="@+id/spInput"
@@ -54,7 +47,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/output" />
+                android:text="@string/second" />
 
             <Spinner
                 android:id="@+id/spOutput"
@@ -130,7 +123,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="@string/input"
+            android:hint="@string/first"
             android:inputType="number" />
 
         <Button
@@ -148,28 +141,42 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:weightSum="10" >
+        android:weightSum="12" >
 
         <Button
-            android:id="@+id/btInvertir"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="7"
-            android:text="@string/invertir" />
-
-        <Button
-            android:id="@+id/btConvertir"
+            android:id="@+id/btSumar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:text="@string/convertir" />
+            android:text="@string/sumar" />
+
+        <Button
+            android:id="@+id/btRestar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/restar" />
+
+        <Button
+            android:id="@+id/btMultiplicar"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/multiplicar" />
+
+        <Button
+            android:id="@+id/btDividir"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="@string/dividir" />
     </LinearLayout>
 
     <EditText
         android:id="@+id/etOutput"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/output"
+        android:hint="@string/second"
         android:inputType="number" />
 
     <TextView

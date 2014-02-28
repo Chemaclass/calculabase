@@ -26,12 +26,12 @@ import com.chemaclass.conversorbase.base.Octal;
 public class MainActivity extends BaseActivity {
 
 	protected Button btConvertir, btInvertir;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
 		super.onCreate(savedInstanceState);
-		
+
 		init();
 	}
 
@@ -49,10 +49,19 @@ public class MainActivity extends BaseActivity {
 
 	private void init() {
 
-		
+		// etConsola.setKeyListener(null);
+
+		etOutput.setOnKeyListener(new View.OnKeyListener() {
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+				return true;
+			}
+		});
+		etOutput.setFocusable(false);
+
 		btConvertir = (Button) findViewById(R.id.btConvertir);
 		btInvertir = (Button) findViewById(R.id.btInvertir);
-		
+
 		btConvertir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -66,14 +75,14 @@ public class MainActivity extends BaseActivity {
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.main, menu);
+		inflater.inflate(R.menu.main, menu);
 		return true;
-	}	
-	
+	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Uri uri;
@@ -116,10 +125,10 @@ public class MainActivity extends BaseActivity {
 			}
 			return true;
 		case R.id.action_calculator:
-			intent = new Intent(this,CalculatorActivity.class);
+			intent = new Intent(this, CalculatorActivity.class);
 			startActivity(intent);
 			return true;
-		
+
 		default:
 			return super.onOptionsItemSelected(item);
 		}
