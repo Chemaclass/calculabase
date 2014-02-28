@@ -1,30 +1,44 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_share"
-        android:icon="@drawable/ic_action_cloud"
+        android:id="@+id/action_calculator"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/action_share"/>
-    
+        android:title="@string/action_calculator"/>
     <item
-        android:id="@+id/action_aboutme"
+        android:id="@+id/action_other"
         android:icon="@drawable/ic_action_overflow"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/action_aboutme"/>
-    
-    <item
-        android:id="@+id/action_more"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_more"/>
-    
-    <item
-        android:id="@+id/action_web"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_author"/>
-    
+        android:title="@string/action_options">
+        <menu>
+            <group android:id="@+id/grupo1" >
+                <item
+                    android:id="@+id/action_share"
+                    android:icon="@drawable/ic_action_cloud"
+                    android:orderInCategory="100"
+                    android:showAsAction="ifRoom|withText"
+                    android:title="@string/action_share"/>
+                <item
+                    android:id="@+id/action_aboutme"
+                    android:icon="@drawable/ic_action_good"
+                    android:orderInCategory="100"
+                    android:showAsAction="ifRoom|withText"
+                    android:title="@string/action_aboutme"/>
+                <item
+                    android:id="@+id/action_more"
+                    android:icon="@drawable/ic_action_good"
+                    android:orderInCategory="100"
+                    android:showAsAction="ifRoom"
+                    android:title="@string/action_more"/>
+                <item
+                    android:id="@+id/action_web"
+                    android:icon="@drawable/ic_action_good"
+                    android:orderInCategory="100"
+                    android:showAsAction="ifRoom|withText"
+                    android:title="@string/action_author"/>
+            </group>
+        </menu>
+    </item>
 
 </menu>

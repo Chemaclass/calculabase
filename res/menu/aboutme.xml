@@ -11,7 +11,7 @@
         android:id="@+id/action_twitter"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:icon="@drawable/ic_action_good"
+        android:icon="@drawable/ic_action_cloud"
         android:title="@string/action_twitter"/>
 
 </menu>

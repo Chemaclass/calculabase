@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -243,15 +246,16 @@ public class MainActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.main, menu);
 		return true;
-	}
-
+	}	
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Uri uri;
 		Intent browserIntent;
+		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.action_web:
 			uri = Uri.parse("http://www.chemaclass.com");
@@ -259,7 +263,7 @@ public class MainActivity extends Activity {
 			startActivity(browserIntent);
 			return true;
 		case R.id.action_aboutme:
-			Intent intent = new Intent(this, AboutMeActivity.class);
+			intent = new Intent(this, AboutMeActivity.class);
 			startActivity(intent);
 			return true;
 		case R.id.action_more:
@@ -287,6 +291,10 @@ public class MainActivity extends Activity {
 				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
 						.show();
 			}
+			return true;
+		case R.id.action_calculator:
+			intent = new Intent(this,CalculatorActivity.class);
+			startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
