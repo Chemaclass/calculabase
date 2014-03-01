@@ -61,44 +61,7 @@ public class CalculatorActivity extends BaseActivity {
 			public void onClick(View v) {
 				operar(TipoOperacion.division);
 			}
-		});
-		/*
-		 * Sobreescribimos el listener del spinner spOuput, para que muestre las
-		 * letras [A..D] para poder escribir HEXA en el segundo EditText
-		 */
-		spOutput.setOnItemSelectedListener(new OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> adapter, View view,
-					int position, long id) {
-				// ocultar los botones
-				layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
-				switch (position) {
-				case 0: // Binario
-					baseOutput = new Binary();
-					conversorOutput = Conversor.Binary;
-					break;
-				case 1: // Octal
-					baseOutput = new Octal();
-					conversorOutput = Conversor.Octal;
-					break;
-				case 2: // Decimal
-					baseOutput = new Decimal();
-					conversorOutput = Conversor.Decimal;
-					break;
-				case 3: // Hexadecimal
-					baseOutput = new Hexadecimal();
-					conversorOutput = Conversor.Hexadecimal;
-					// Sólo si estamos en la calculadora:
-					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
-					break;
-				}
-				// msg("output: " + conversorOutput.name(), 0);
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}
-		});
+		});		
 	}
 
 	@Override

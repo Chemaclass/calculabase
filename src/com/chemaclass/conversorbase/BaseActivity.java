@@ -1,9 +1,11 @@
 package com.chemaclass.conversorbase;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -18,10 +20,12 @@ import com.chemaclass.conversorbase.base.Binary;
 import com.chemaclass.conversorbase.base.Decimal;
 import com.chemaclass.conversorbase.base.Hexadecimal;
 import com.chemaclass.conversorbase.base.Octal;
+import com.chemaclass.conversorbase.listeners.HexaOnFocusChangeListener;
+import com.chemaclass.conversorbase.listeners.MyOnItemSelectedListener;
 
 public abstract class BaseActivity extends Activity {
 
-	protected enum Conversor {
+	public enum Conversor {
 		Binary, Octal, Decimal, Hexadecimal
 	}
 
@@ -45,6 +49,7 @@ public abstract class BaseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		init();
+
 	}
 
 	/**
@@ -69,7 +74,44 @@ public abstract class BaseActivity extends Activity {
 
 		etConsola.setFocusable(false);
 		etConsola.setClickable(true);
+		// Inicializar el layout y los botones de las letras hexadecimales
+		initLayoutHexadecimal();
+		// Preparamos los eventos de los edits
+		initEditTexts();
+		// Inicializamos los valores de los spinners
+		initSpinners();
 
+		btCleanInput = (Button) findViewById(R.id.btCleanInput);
+		btCleanInput.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				etInput.setText(null);
+			}
+		});
+	}
+
+	/**
+	 * Indicamos los eventos correspondientes a los EditTexts con los que
+	 * trabajamos
+	 */
+	private void initEditTexts() {
+		// Comprobamos que su base sea hexa o no. Este evento estará pendiente
+		// del cambio del foco. Construiremos un objeto al que le pasaremos el
+		// spinner y el linerlayout. De esta forma, cuando en el spinner
+		// seleccinemos algo concreto (en este caso que la base sea HEXA)
+		// mostraremos el linearlayout pasado como segundo parámetro. De lo
+		// contrario siempre ocultaremos el linearlayout
+		etInput.setOnFocusChangeListener(new HexaOnFocusChangeListener(this,
+				spInput, layoutBtnHexadecimal));
+		etOutput.setOnFocusChangeListener(new HexaOnFocusChangeListener(this,
+				spOutput, layoutBtnHexadecimal));
+	}
+
+	/**
+	 * Inicializamos los spinners y les damos un valor a cada elemento (Serán
+	 * las bases con las que se podrán trabajar)
+	 */
+	private void initSpinners() {
 		// Preparamos el adapter
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item);
@@ -84,6 +126,7 @@ public abstract class BaseActivity extends Activity {
 		spOutput.setAdapter(adapter);
 		spOutput.setSelection(Base.BINARIO);// Binario-> 0
 
+		// Establecemos nuestros listeners a los spinners
 		spInput.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View view,
@@ -106,6 +149,7 @@ public abstract class BaseActivity extends Activity {
 				case 3: // Hexadecimal
 					baseInput = new Hexadecimal();
 					conversorInput = Conversor.Hexadecimal;
+					//Mostramos los botones HEXA
 					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
@@ -115,7 +159,6 @@ public abstract class BaseActivity extends Activity {
 			@Override
 			public void onNothingSelected(AdapterView<?> adapter) {
 			}
-			// TODO Auto-generated method stub
 		});
 		spOutput.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -139,22 +182,17 @@ public abstract class BaseActivity extends Activity {
 				case 3: // Hexadecimal
 					baseOutput = new Hexadecimal();
 					conversorOutput = Conversor.Hexadecimal;
+					// Si nuestra instancia se corresponde con la calculadora
+					if (getApplicationContext() instanceof CalculatorActivity)
+						layoutBtnHexadecimal
+								.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
-				// msg("output: " + conversorOutput.name(), 0);
+				// msg("input: " + baseInput.me(), 0);
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> adapter) {
-			}
-		});
-		// Inicializar el layout y los botones de las letras hexadecimales
-		initLayoutHexadecimal();
-		btCleanInput = (Button) findViewById(R.id.btCleanInput);
-		btCleanInput.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				etInput.setText(null);
 			}
 		});
 	}
@@ -232,14 +270,14 @@ public abstract class BaseActivity extends Activity {
 	 */
 	private void printEdit(EditText et, String letter) {
 		// O el foco está en el segundo campo de texto
-		String input = etOutput.getText().toString();
+		String input = et.getText().toString();
 		// Obtenemos la posición actual del cursor
-		int start = etOutput.getSelectionStart();
+		int start = et.getSelectionStart();
 		// introducimos la letra A en la posición del cursor
 		String s = input.substring(0, start) + letter + input.substring(start);
-		etOutput.setText(s);
+		et.setText(s);
 		// colocamos el cursor delante de la letra puesta
-		etOutput.setSelection(start + 1);
+		et.setSelection(start + 1);
 	}
 
 	private String getTextResult() {
@@ -260,12 +298,6 @@ public abstract class BaseActivity extends Activity {
 		// Para la consola de la app
 		etConsola.setText(etConsola.getText() + s + "\n");
 	}
-
-	/*
-	 * protected abstract void convertir();
-	 * 
-	 * protected abstract void invertir();
-	 */
 
 	/**
 	 * Muestra un Toast. Para la duración larga se le debe pasar un 1 como
