@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.chemaclass.conversorbase.base.Base;
 import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class CalculatorActivity extends BaseActivity {
@@ -81,24 +82,65 @@ public class CalculatorActivity extends BaseActivity {
 	 * @return
 	 */
 	private boolean youCanDoThis() {
-		
-		
-	
+		String input1 = etInput.getText().toString();
+		String input2 = etOutput.getText().toString();
+		// El el caso de que el primero o el segundo input no se correspondan, o
+		// estén vacíos, devolveremos un false
+		if (input1.length() == 0 || input2.length() == 0
+				|| !check(input1, spInput.getSelectedItemId())
+				|| !check(input2, spOutput.getSelectedItemId())) {
+			return false;
+		}
 		return true;
+	}
+
+	/**
+	 * Verifica que el input esté en la base que se le pide
+	 * 
+	 * @param input
+	 *            String número a verificar
+	 * @param base
+	 *            Base en la que tiene que estar
+	 * @return Si input tuviera algún caracter que su base no puede permitir
+	 *         estaría mal formado y por tanto devolvería un false
+	 */
+	private boolean check(String input, long base) {
+		int aux = (int) base;
+		switch (aux) {
+		case Base.BINARIO:
+			if (Utils.isBinary(input))
+				return true;
+			break;
+		case Base.OCTAL:
+			if (Utils.isOctal(input))
+				return true;
+			break;
+		case Base.DECIMAL:
+			if (Utils.isDecimal(input))
+				return true;
+			break;
+		case Base.HEXADECIMAL:
+			if (Utils.isHexadecimal(input))
+				return true;
+			break;
+		}
+		return false;
 	}
 
 	/**
 	 * Antes de realizar la operación tenemos que pasar por unos validadores que
 	 * nos aseguren que los datos están bien introducidos
 	 * 
-	 * @param to TipoOperación 
+	 * @param to
+	 *            TipoOperación
 	 */
 	private void preoperar(TipoOperacion to) {
 		if (youCanDoThis()) {
-			lastTypeOperation = to;
+			lastTypeOperation = to; // guardamos la última operación
 			operar(lastTypeOperation);
 		} else {
-			msg("Comprueba que los datos sean correctos...", 0);
+			// Mostramos un toast de error
+			msg(getResources().getString(R.string.verify), 0);
 		}
 	}
 

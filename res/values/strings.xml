@@ -52,4 +52,6 @@ Share with your friends your conversions!</string>
     <string name="multiplicacion">Multiplication </string> 
     <string name="dividision">Division</string> 
     
+    <string name="verify">Verify that the information is correct</string>
+    
 </resources>
