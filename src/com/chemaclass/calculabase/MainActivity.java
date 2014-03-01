@@ -6,11 +6,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.chemaclass.calculabase.base.Base;
 import com.chemaclass.calculabase.exceptions.InvalidFormatException;
-
 
 public class MainActivity extends BaseActivity {
 
@@ -59,7 +59,6 @@ public class MainActivity extends BaseActivity {
 		inflater.inflate(R.menu.main, menu);
 		return true;
 	}
-	
 
 	/**
 	 * Escribe en la consola de la app
@@ -149,15 +148,23 @@ public class MainActivity extends BaseActivity {
 	 */
 	protected void invertir() {
 		// Cambiamos los Spinners
-		int inputSelect = spInput.getSelectedItemPosition();
-		int outputSelect = spOutput.getSelectedItemPosition();
-		spInput.setSelection(outputSelect);
-		spOutput.setSelection(inputSelect);
+		//int inputSelect = spInput.getSelectedItemPosition();
+		int lsatInputSelect =(int) spInput.getSelectedItemId();
+		int lastOutputSelect = spOutput.getSelectedItemPosition();
+		spOutput.setSelection(lsatInputSelect);
+		spInput.setSelection(lastOutputSelect);
+		
 		// cambiamos los textos
 		String input = etInput.getText().toString();
 		String output = etOutput.getText().toString();
 		etInput.setText(output);
 		etOutput.setText(input);
+		//Además, si el spInput es HEXA lo mostramos
+		if (lastOutputSelect == Base.HEXADECIMAL) {
+			layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
+		}else{//en caso contrario, lo ocultamos
+			layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
+		}
 	}
 
 	/**

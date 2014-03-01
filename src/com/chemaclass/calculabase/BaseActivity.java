@@ -22,7 +22,6 @@ import com.chemaclass.calculabase.base.Hexadecimal;
 import com.chemaclass.calculabase.base.Octal;
 import com.chemaclass.calculabase.listeners.HexaOnFocusChangeListener;
 
-
 public abstract class BaseActivity extends Activity {
 
 	public enum Conversor {
@@ -154,8 +153,11 @@ public abstract class BaseActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> adapter, View view,
 					int position, long id) {
-				// ocultar los botones
-				layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
+				// ocultar los botones si estamos en la calculadora
+				if (getWindow().getCurrentFocus().equals(etOutput)
+						&& getApplicationContext() instanceof CalculatorActivity) {
+					layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
+				}
 				switch (position) {
 				case 0: // Binario
 					baseOutput = new Binary();
@@ -175,9 +177,10 @@ public abstract class BaseActivity extends Activity {
 					// Si nuestra instancia se corresponde con la calculadora y
 					// el foco lo tiene el segundo input
 					if (getWindow().getCurrentFocus().equals(etOutput)
-					/* && getApplicationContext() instanceof CalculatorActivity */)
+							&& getApplicationContext() instanceof CalculatorActivity) {
 						layoutBtnHexadecimal
 								.setVisibility(LinearLayout.VISIBLE);
+					}
 					break;
 				}
 				// msg("input: " + baseInput.me(), 0);
@@ -303,7 +306,7 @@ public abstract class BaseActivity extends Activity {
 					.show();
 		}
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Uri uri;
@@ -355,7 +358,11 @@ public abstract class BaseActivity extends Activity {
 		}
 
 	}
-	
+
+	/**
+	 * Pintar el resultado por pantalla
+	 * @return
+	 */
 	protected abstract String getTextResult();
 
 }
