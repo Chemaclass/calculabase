@@ -1,7 +1,10 @@
 package com.chemaclass.conversorbase;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -176,7 +179,7 @@ public abstract class BaseActivity extends Activity {
 								.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
-				msg("input: " + baseInput.me(), 0);
+				// msg("input: " + baseInput.me(), 0);
 			}
 
 			@Override
@@ -299,5 +302,59 @@ public abstract class BaseActivity extends Activity {
 					.show();
 		}
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Uri uri;
+		Intent browserIntent;
+		Intent intent;
+		switch (item.getItemId()) {
+		case R.id.action_web:
+			uri = Uri.parse(Utils.URL_CHEMACLASS);
+			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(browserIntent);
+			return true;
+		case R.id.action_aboutme:
+			intent = new Intent(this, AboutMeActivity.class);
+			startActivity(intent);
+			return true;
+		case R.id.action_more:
+			uri = Uri.parse(Utils.URL_PLAY_JMVR);
+			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(browserIntent);
+			return true;
+
+		case R.id.action_share:
+			// Comprobamos que haya alguna conversión hecha
+			if (etOutput.getText().length() > 0
+					&& etInput.getText().length() > 0
+					&& etConsola.getText().length() > 0) {
+				String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
+				String text_to_send = getTextResult()
+						+ "\nby 'Conversor Base! APP' " + url_app;
+				Intent sendIntent = new Intent();
+				sendIntent.setAction(Intent.ACTION_SEND);
+				sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
+				sendIntent.setType("text/plain");
+				startActivity(sendIntent);
+			} else {
+				String str = "What conversion?";
+				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
+						.show();
+			}
+			return true;
+		case R.id.action_calculator:
+			finish();
+			intent = new Intent(this, CalculatorActivity.class);
+			startActivity(intent);
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+	
+	protected abstract String getTextResult();
 
 }

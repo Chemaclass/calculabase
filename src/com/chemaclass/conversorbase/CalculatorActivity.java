@@ -17,7 +17,8 @@ public class CalculatorActivity extends BaseActivity {
 
 	protected Button btSumar, btRestar, btMultiplicar, btDividir;
 	protected Button btCleanOutput;
-	
+	private TipoOperacion lastTypeOperation;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_calculator);
@@ -26,39 +27,43 @@ public class CalculatorActivity extends BaseActivity {
 	}
 
 	private void init() {
-		//Botones de las operaciones
+		// Botones de las operaciones
 		btSumar = (Button) findViewById(R.id.btSumar);
 		btRestar = (Button) findViewById(R.id.btRestar);
 		btMultiplicar = (Button) findViewById(R.id.btMultiplicar);
 		btDividir = (Button) findViewById(R.id.btDividir);
-		
+
 		btCleanOutput = (Button) findViewById(R.id.btCleanOutput);
-		
+
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.sum);
+				lastTypeOperation = TipoOperacion.sum;
+				operar(lastTypeOperation);
 			}
 		});
 		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.subtraction);
+				lastTypeOperation = TipoOperacion.subtraction;
+				operar(lastTypeOperation);
 			}
 		});
 		btMultiplicar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.multiplication);
+				lastTypeOperation = TipoOperacion.multiplication;
+				operar(lastTypeOperation);
 			}
 		});
 		btDividir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.division);
+				lastTypeOperation = TipoOperacion.division;
+				operar(lastTypeOperation);
 			}
 		});
-		//Borrar el segundo campo de entrada
+		// Borrar el segundo campo de entrada
 		btCleanOutput.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -93,7 +98,7 @@ public class CalculatorActivity extends BaseActivity {
 	 * @param to
 	 *            TipoOoperacion
 	 */
-	private void operar(TipoOperacion to) {
+	private String operar(TipoOperacion to) {
 		etConsola.setText(null);
 		String f = etInput.getText().toString();
 		String s = etOutput.getText().toString();
@@ -115,12 +120,17 @@ public class CalculatorActivity extends BaseActivity {
 				result = (Integer.parseInt(fDec) / Integer.parseInt(sDec));
 				break;
 			}
-			log(getResultsInAllBases(to, result));
+			String resul = getResultsInAllBases(to, result);
+			// Pintamos el resultado
+			log(resul);
+			// Y lo devolvemos
+			return resul;
 		} catch (InvalidFormatException e) {
 			log("\n" + e.getMessage());
 		} catch (Exception e) {
 			log("Exception: " + e.getMessage());
 		}
+		return null;
 	}
 
 	/**
@@ -139,4 +149,19 @@ public class CalculatorActivity extends BaseActivity {
 		return s;
 	}
 
+	/**
+	 * Obtener el resultadoo a mostrar en la consola
+	 * 
+	 * @return string
+	 */
+	@Override
+	protected String getTextResult() {
+		String input1 = etInput.getText().toString() ;
+		String input2 = etOutput.getText().toString();
+		String f = input1+ "(" + conversorInput.name()+ ")";
+		String s = input2 + "(" + conversorOutput.name()+ ")";
+		String resul = f + s;
+		resul += operar(lastTypeOperation);
+		return resul;
+	}
 }

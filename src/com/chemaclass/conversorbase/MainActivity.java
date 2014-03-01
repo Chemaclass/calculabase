@@ -61,58 +61,7 @@ public class MainActivity extends BaseActivity {
 		inflater.inflate(R.menu.main, menu);
 		return true;
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		Uri uri;
-		Intent browserIntent;
-		Intent intent;
-		switch (item.getItemId()) {
-		case R.id.action_web:
-			uri = Uri.parse(Utils.URL_CHEMACLASS);
-			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
-			startActivity(browserIntent);
-			return true;
-		case R.id.action_aboutme:
-			intent = new Intent(this, AboutMeActivity.class);
-			startActivity(intent);
-			return true;
-		case R.id.action_more:
-			uri = Uri.parse(Utils.URL_PLAY_JMVR);
-			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
-			startActivity(browserIntent);
-			return true;
-
-		case R.id.action_share:
-			// Comprobamos que haya alguna conversión hecha
-			if (etOutput.getText().length() > 0
-					&& etInput.getText().length() > 0
-					&& etConsola.getText().length() > 0) {
-				String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
-				String text_to_send = getTextResult()
-						+ "\nby 'Conversor Base! APP' " + url_app;
-				Intent sendIntent = new Intent();
-				sendIntent.setAction(Intent.ACTION_SEND);
-				sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
-				sendIntent.setType("text/plain");
-				startActivity(sendIntent);
-			} else {
-				String str = "What conversion?";
-				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
-						.show();
-			}
-			return true;
-		case R.id.action_calculator:
-			finish();
-			intent = new Intent(this, CalculatorActivity.class);
-			startActivity(intent);
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-
-	}
+	
 
 	/**
 	 * Escribe en la consola de la app
@@ -188,7 +137,8 @@ public class MainActivity extends BaseActivity {
 	 * 
 	 * @return string
 	 */
-	private String getTextResult() {
+	@Override
+	protected String getTextResult() {
 		return getResources().getString(R.string.convert) + " "
 				+ etInput.getText().toString() + " "
 				+ getResources().getString(R.string.in) + " " + baseInput.me()
