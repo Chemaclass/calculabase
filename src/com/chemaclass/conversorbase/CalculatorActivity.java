@@ -1,15 +1,25 @@
 package com.chemaclass.conversorbase;
 
+import com.chemaclass.conversorbase.BaseActivity.Conversor;
+import com.chemaclass.conversorbase.base.Binary;
+import com.chemaclass.conversorbase.base.Decimal;
+import com.chemaclass.conversorbase.base.Hexadecimal;
+import com.chemaclass.conversorbase.base.Octal;
+import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class CalculatorActivity extends BaseActivity {
 
 	enum TipoOperacion {
-		sumar, restar, multiplicar, dividir;
+		suma, resta, multiplicacion, division;
 	}
 
 	protected Button btSumar, btRestar, btMultiplicar, btDividir;
@@ -31,25 +41,59 @@ public class CalculatorActivity extends BaseActivity {
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.sumar);
+				operar(TipoOperacion.suma);
 			}
 		});
 		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.restar);
+				operar(TipoOperacion.resta);
 			}
 		});
 		btMultiplicar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.multiplicar);
+				operar(TipoOperacion.multiplicacion);
 			}
 		});
 		btDividir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.dividir);
+				operar(TipoOperacion.division);
+			}
+		});
+		
+		spOutput.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> adapter, View view,
+					int position, long id) {
+				// ocultar los botones
+				layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
+				switch (position) {
+				case 0: // Binario
+					baseOutput = new Binary();
+					conversorOutput = Conversor.Binary;
+					break;
+				case 1: // Octal
+					baseOutput = new Octal();
+					conversorOutput = Conversor.Octal;
+					break;
+				case 2: // Decimal
+					baseOutput = new Decimal();
+					conversorOutput = Conversor.Decimal;
+					break;
+				case 3: // Hexadecimal
+					baseOutput = new Hexadecimal();
+					conversorOutput = Conversor.Hexadecimal;
+					//Sólo si estamos en la calculadora:
+					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
+					break;
+				}
+				// msg("output: " + conversorOutput.name(), 0);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {				
 			}
 		});
 	}
@@ -75,50 +119,46 @@ public class CalculatorActivity extends BaseActivity {
 	 * Abstraer a nivel de lógica las operaciones para que todas sean
 	 * controladas por este método
 	 * 
-	 * @param to TipoOoperacion
+	 * @param to
+	 *            TipoOoperacion
 	 */
 	private void operar(TipoOperacion to) {
-		switch (to) {
-		case sumar:
-			sumar();
-			break;
-		case restar:
-			restar();
-			break;
-		case multiplicar:
-			multiplicar();
-			break;
-		case dividir:
-			dividir();
-			break;
+		etConsola.setText(null);
+		String f = etInput.getText().toString();
+		String s = etOutput.getText().toString();
+		long result = 0;
+		try {
+			String fDec = Utils.getDecimal(f, conversorInput);
+			String sDec = Utils.getDecimal(s, conversorOutput);
+			switch (to) {
+			case suma:
+				result = (Integer.parseInt(fDec) + Integer.parseInt(sDec));
+				break;
+			case resta:
+				result = (Integer.parseInt(fDec) - Integer.parseInt(sDec));
+				break;
+			case multiplicacion:
+				result = (Integer.parseInt(fDec) * Integer.parseInt(sDec));
+				break;
+			case division:
+				result = (Integer.parseInt(fDec) / Integer.parseInt(sDec));
+				break;
+			}
+			log("\n" + getResultsInAllBases(result));
+		} catch (InvalidFormatException e) {
+			log("\n" + e.getMessage());
+		} catch (Exception e) {
+			log("Exception: " + e.getMessage());
 		}
 	}
 
-	private void sumar() {
-		log("Sumar");
-		String f = etInput.getText().toString();
-		String s = etOutput.getText().toString();
-
-		String fDec = Utils.getConversion(f, baseInput, Conversor.Decimal);
-		String sDec = Utils.getConversion(s, baseOutput, Conversor.Decimal);
-
-		String resultado = ""
-				+ (Integer.parseInt(fDec) + Integer.parseInt(sDec));
-
-		log("\n" + "La suma es: " + resultado); // consola
-
-	}
-
-	private void restar() {
-		log("restar");
-	}
-
-	private void multiplicar() {
-		log("multiplicar");
-	}
-
-	private void dividir() {
-		log("dividir");
+	private String getResultsInAllBases(long result) {
+		String s = "Results:";
+		s += "\n" + " - In Binary is: " + Long.toString(result, 2);
+		s += "\n" + " - In Octal is: " + Long.toString(result, 8);
+		s += "\n" + " - In Decimal is: " + Long.toString(result, 10);
+		s += "\n" + " - In Hexadecimal is: " + Long.toString(result, 16);
+		return s;
 	}
 
 }

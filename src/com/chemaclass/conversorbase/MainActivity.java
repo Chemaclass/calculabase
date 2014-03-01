@@ -17,11 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.chemaclass.conversorbase.BaseActivity.Conversor;
 import com.chemaclass.conversorbase.base.Base;
 import com.chemaclass.conversorbase.base.Binary;
 import com.chemaclass.conversorbase.base.Decimal;
 import com.chemaclass.conversorbase.base.Hexadecimal;
 import com.chemaclass.conversorbase.base.Octal;
+import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class MainActivity extends BaseActivity {
 
@@ -173,7 +175,12 @@ public class MainActivity extends BaseActivity {
 			 * conversorOutput.name() + ": " + "\n");
 			 */
 
-			result = Utils.getConversion(input, baseInput, conversorOutput);
+			try {
+				result = getConversionBy(input, baseInput, conversorOutput);
+			} catch (InvalidFormatException e) {
+				e.printStackTrace();
+			}
+
 			etOutput.setText(result); // resultado
 			log("\n" + getTextResult()); // consola
 			// log("-------END---------\n");
@@ -183,6 +190,21 @@ public class MainActivity extends BaseActivity {
 			msg(getResources().getString(R.string.input_error), 0);
 		}
 		etInput.requestFocus();
+	}
+
+	private String getConversionBy(String input, Base baseInput,
+			Conversor conversorOutput) throws InvalidFormatException {
+		switch (conversorOutput) {
+		case Binary:
+			return baseInput.toBinary(input);
+		case Octal:
+			return baseInput.toOctal(input);
+		case Decimal:
+			return baseInput.toDecimal(input);
+		case Hexadecimal:
+			return baseInput.toHexadecimal(input);
+		}
+		return null;
 	}
 
 	/**

@@ -67,7 +67,7 @@ public abstract class BaseActivity extends Activity {
 		etInput = (EditText) findViewById(R.id.etInput);
 		etOutput = (EditText) findViewById(R.id.etOutput);
 		etConsola = (EditText) findViewById(R.id.etConsola);
-		
+
 		etConsola.setFocusable(false);
 		etConsola.setClickable(true);
 
@@ -140,7 +140,6 @@ public abstract class BaseActivity extends Activity {
 				case 3: // Hexadecimal
 					baseOutput = new Hexadecimal();
 					conversorOutput = Conversor.Hexadecimal;
-					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
 				// msg("output: " + conversorOutput.name(), 0);
@@ -217,14 +216,30 @@ public abstract class BaseActivity extends Activity {
 	 *            letra a escribir
 	 */
 	private void printLetter(String letter) {
-		String input = etInput.getText().toString();
-		// Obtenemos la posición actual del cursor
-		int start = etInput.getSelectionStart();
-		// introducimos la letra A en la posición del cursor
-		String s = input.substring(0, start) + letter + input.substring(start);
-		etInput.setText(s);
-		// colocamos el cursor delante de la letra puesta
-		etInput.setSelection(start + 1);
+		// El foco está en el primer campo de texto
+		if (getWindow().getCurrentFocus().equals(etInput)) {
+			
+			String input = etInput.getText().toString();
+			// Obtenemos la posición actual del cursor
+			int start = etInput.getSelectionStart();
+			// introducimos la letra A en la posición del cursor
+			String s = input.substring(0, start) + letter
+					+ input.substring(start);
+			etInput.setText(s);
+			// colocamos el cursor delante de la letra puesta
+			etInput.setSelection(start + 1);
+		} else {
+			// O el foco está en el segundo campo de texto
+			String input = etOutput.getText().toString();
+			// Obtenemos la posición actual del cursor
+			int start = etOutput.getSelectionStart();
+			// introducimos la letra A en la posición del cursor
+			String s = input.substring(0, start) + letter
+					+ input.substring(start);
+			etOutput.setText(s);
+			// colocamos el cursor delante de la letra puesta
+			etOutput.setSelection(start + 1);
+		}
 	}
 
 	private String getTextResult() {
@@ -246,10 +261,12 @@ public abstract class BaseActivity extends Activity {
 		etConsola.setText(etConsola.getText() + s + "\n");
 	}
 
-	/*protected abstract void convertir();
-	
-	protected abstract void invertir();*/
-	
+	/*
+	 * protected abstract void convertir();
+	 * 
+	 * protected abstract void invertir();
+	 */
+
 	/**
 	 * Muestra un Toast. Para la duración larga se le debe pasar un 1 como
 	 * segundo argumento

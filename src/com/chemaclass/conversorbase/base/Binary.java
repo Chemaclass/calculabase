@@ -72,7 +72,6 @@ public class Binary implements Base {
 		return resultado;
 	}
 
-
 	@Override
 	public String toDecimal(String input) {
 		if (!Utils.isBinary(input) || input.length() == 0)
@@ -82,25 +81,25 @@ public class Binary implements Base {
 			if (Long.parseLong(input) == 0 || Long.parseLong(input) == 1) {
 				return input;
 			}
-		 // Para todo lo demás
+		// Para todo lo demás
 		String out = "";
-        long resultado = 0, base = 0;
-        long sumaje;
-        for (int i = input.length() - 1; i >= 0; i--) {
-            char c = input.charAt(i);
-            //si es 1 entonces preparamos el dígito a su potencia
-            if (c == '1') {
-                sumaje = (long) Math.pow(2, base);
-				out = sumaje + " (2^" + base + ") \n" + " + " + out;
-                resultado += sumaje;
-            }
-            base++;
-        }
-        // quitamos el último signo '+'
+		long resultado = 0, base = 0;
+		long sumaje;
+		for (int i = input.length() - 1; i >= 0; i--) {
+			char c = input.charAt(i);
+			// si es 1 entonces preparamos el dígito a su potencia
+			if (c == '1') {
+				sumaje = (long) Math.pow(2, base);
+				out = sumaje + " (2^" + base + ")" + " + " + out;
+				resultado += sumaje;
+			}
+			base++;
+		}
+		// quitamos el último signo '+'
 		out = out.substring(0, out.length() - 3);
-        out += " = " + resultado;// añadimos el resultado
+		out += " = " + resultado;// añadimos el resultado
 		MainActivity.log(out);
-        return String.valueOf(resultado); // TextField de resultado     
+		return String.valueOf(resultado); // TextField de resultado
 	}
 
 	@Override

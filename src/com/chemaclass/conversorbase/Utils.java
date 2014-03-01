@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import com.chemaclass.conversorbase.BaseActivity.Conversor;
 import com.chemaclass.conversorbase.base.Base;
+import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class Utils {
 
@@ -19,20 +20,17 @@ public class Utils {
 	 *            Base de salida a la que se quiere convertir
 	 * @return
 	 */
-	public static String getConversion(String input, Base baseInput,
-			Conversor conversorOutput) {
-		switch (conversorOutput) {
+	public static String getDecimal(String input, Conversor conversorInput)
+			throws InvalidFormatException {
+		switch (conversorInput) {
 		case Binary:
-			return baseInput.toBinary(input);
-
+			return "" + Long.parseLong(input, 2);
 		case Octal:
-			return baseInput.toOctal(input);
-
+			return "" + Long.parseLong(input, 8);
 		case Decimal:
-			return baseInput.toDecimal(input);
-
+			return "" + Long.parseLong(input, 10);
 		case Hexadecimal:
-			return baseInput.toHexadecimal(input);
+			return "" + Long.parseLong(input, 16);
 		}
 		return null;
 	}
