@@ -16,7 +16,8 @@ public class CalculatorActivity extends BaseActivity {
 	}
 
 	protected Button btSumar, btRestar, btMultiplicar, btDividir;
-
+	protected Button btCleanOutput;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_calculator);
@@ -25,12 +26,14 @@ public class CalculatorActivity extends BaseActivity {
 	}
 
 	private void init() {
-
+		//Botones de las operaciones
 		btSumar = (Button) findViewById(R.id.btSumar);
 		btRestar = (Button) findViewById(R.id.btRestar);
 		btMultiplicar = (Button) findViewById(R.id.btMultiplicar);
 		btDividir = (Button) findViewById(R.id.btDividir);
-
+		
+		btCleanOutput = (Button) findViewById(R.id.btCleanOutput);
+		
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -53,6 +56,13 @@ public class CalculatorActivity extends BaseActivity {
 			@Override
 			public void onClick(View v) {
 				operar(TipoOperacion.division);
+			}
+		});
+		//Borrar el segundo campo de entrada
+		btCleanOutput.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				etOutput.setText(null);
 			}
 		});
 	}
