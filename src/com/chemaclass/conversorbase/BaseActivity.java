@@ -132,8 +132,11 @@ public abstract class BaseActivity extends Activity {
 				case 3: // Hexadecimal
 					baseInput = new Hexadecimal();
 					conversorInput = Conversor.Hexadecimal;
-					//Mostramos los botones HEXA
-					layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
+					// Mostramos los botones HEXA si el foco lo tiene el
+					// EditText input
+					if (getWindow().getCurrentFocus().equals(etInput))
+						layoutBtnHexadecimal
+								.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
 				// msg("input: " + baseInput.me(), 0);
@@ -165,8 +168,10 @@ public abstract class BaseActivity extends Activity {
 				case 3: // Hexadecimal
 					baseOutput = new Hexadecimal();
 					conversorOutput = Conversor.Hexadecimal;
-					// Si nuestra instancia se corresponde con la calculadora
-					if (getApplicationContext() instanceof CalculatorActivity)
+					// Si nuestra instancia se corresponde con la calculadora y
+					// el foco lo tiene el segundo input
+					if (getApplicationContext() instanceof CalculatorActivity
+							&& getWindow().getCurrentFocus().equals(etOutput))
 						layoutBtnHexadecimal
 								.setVisibility(LinearLayout.VISIBLE);
 					break;
