@@ -1,4 +1,4 @@
-package com.chemaclass.conversorbase;
+package com.chemaclass.calculabase;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.chemaclass.conversorbase.base.Base;
-import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
+import com.chemaclass.calculabase.base.Base;
+import com.chemaclass.calculabase.exceptions.InvalidFormatException;
+
 
 public class CalculatorActivity extends BaseActivity {
 

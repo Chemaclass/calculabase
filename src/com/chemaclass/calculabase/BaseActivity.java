@@ -1,4 +1,4 @@
-package com.chemaclass.conversorbase;
+package com.chemaclass.calculabase;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.chemaclass.conversorbase.base.Base;
-import com.chemaclass.conversorbase.base.Binary;
-import com.chemaclass.conversorbase.base.Decimal;
-import com.chemaclass.conversorbase.base.Hexadecimal;
-import com.chemaclass.conversorbase.base.Octal;
-import com.chemaclass.conversorbase.listeners.HexaOnFocusChangeListener;
+import com.chemaclass.calculabase.base.Base;
+import com.chemaclass.calculabase.base.Binary;
+import com.chemaclass.calculabase.base.Decimal;
+import com.chemaclass.calculabase.base.Hexadecimal;
+import com.chemaclass.calculabase.base.Octal;
+import com.chemaclass.calculabase.listeners.HexaOnFocusChangeListener;
+
 
 public abstract class BaseActivity extends Activity {
 

@@ -1,4 +1,5 @@
-package com.chemaclass.conversorbase;
+package com.chemaclass.calculabase;
+
 
 import android.app.Activity;
 import android.content.Intent;

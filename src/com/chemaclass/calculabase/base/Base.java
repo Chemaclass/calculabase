@@ -1,6 +1,6 @@
-package com.chemaclass.conversorbase.base;
+package com.chemaclass.calculabase.base;
 
-import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
+import com.chemaclass.calculabase.exceptions.InvalidFormatException;
 
 public interface Base {
 

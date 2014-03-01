@@ -1,4 +1,4 @@
-package com.chemaclass.conversorbase.exceptions;
+package com.chemaclass.calculabase.exceptions;
 
 public class InvalidFormatException extends Exception{
 
