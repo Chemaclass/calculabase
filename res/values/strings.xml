@@ -31,7 +31,9 @@
     <string name="action_twitter">Follow me on Twitter!</string>
     <string name="description">Converter by binary, octal, decimal and hexadecimal to all.
 Explanation of each step in the conversion.
-Share with your friends your conversions!</string>
+Share with your friends your conversions!
+
+And now you have a calculator of numbers in different bases. Enjoy it!</string>
 
     <!-- <string name="key">value</string> -->
 
