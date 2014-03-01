@@ -5,7 +5,6 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
         android:title="@string/action_conversor"/>
-    
     <item
         android:id="@+id/action_other"
         android:icon="@drawable/ic_action_overflow"
@@ -16,7 +15,7 @@
             <group android:id="@+id/grupo1" >
                 <item
                     android:id="@+id/action_share"
-                    android:icon="@drawable/ic_action_cloud"
+                    android:icon="@drawable/ic_action_share"
                     android:orderInCategory="100"
                     android:showAsAction="ifRoom|withText"
                     android:title="@string/action_share"/>
@@ -28,13 +27,13 @@
                     android:title="@string/action_aboutme"/>
                 <item
                     android:id="@+id/action_more"
-                    android:icon="@drawable/ic_action_good"
+                    android:icon="@drawable/ic_action_new"
                     android:orderInCategory="100"
                     android:showAsAction="ifRoom"
                     android:title="@string/action_more"/>
                 <item
                     android:id="@+id/action_web"
-                    android:icon="@drawable/ic_action_good"
+                    android:icon="@drawable/ic_action_about"
                     android:orderInCategory="100"
                     android:showAsAction="ifRoom|withText"
                     android:title="@string/action_author"/>

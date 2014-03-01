@@ -5,7 +5,7 @@
         android:id="@+id/action_share"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:icon="@drawable/ic_action_good"
+        android:icon="@drawable/ic_action_share"
         android:title="@string/action_share_app"/>
     <item
         android:id="@+id/action_twitter"

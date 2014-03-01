@@ -40,14 +40,13 @@ public class AboutMeActivity extends Activity {
 		Intent browserIntent;
 		switch (item.getItemId()) {
 		case R.id.action_twitter:
-			uri = Uri.parse("https://twitter.com/Chemaclass");
+			uri = Uri.parse(Utils.URL_CHEMACLASS);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(browserIntent);
 			return true;
 		case R.id.action_share:
-			String url_app = "https://play.google.com/store/apps/details?id=com.chemaclass.conversorbase";
-			String text_to_send = "Try 'Conversor Base! APP' " + url_app
-					+ " It's fun!";
+			String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
+			String text_to_send = "Try 'Conversor Base! APP' " + url_app;
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
