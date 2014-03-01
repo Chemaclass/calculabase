@@ -12,7 +12,7 @@ import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 public class CalculatorActivity extends BaseActivity {
 
 	enum TipoOperacion {
-		suma, resta, multiplicacion, division;
+		sum, subtraction, multiplication, division;
 	}
 
 	protected Button btSumar, btRestar, btMultiplicar, btDividir;
@@ -34,19 +34,19 @@ public class CalculatorActivity extends BaseActivity {
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.suma);
+				operar(TipoOperacion.sum);
 			}
 		});
 		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.resta);
+				operar(TipoOperacion.subtraction);
 			}
 		});
 		btMultiplicar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				operar(TipoOperacion.multiplicacion);
+				operar(TipoOperacion.multiplication);
 			}
 		});
 		btDividir.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +54,7 @@ public class CalculatorActivity extends BaseActivity {
 			public void onClick(View v) {
 				operar(TipoOperacion.division);
 			}
-		});		
+		});
 	}
 
 	@Override
@@ -92,20 +92,20 @@ public class CalculatorActivity extends BaseActivity {
 			String fDec = Utils.getDecimal(f, conversorInput);
 			String sDec = Utils.getDecimal(s, conversorOutput);
 			switch (to) {
-			case suma:
+			case sum:
 				result = (Integer.parseInt(fDec) + Integer.parseInt(sDec));
 				break;
-			case resta:
+			case subtraction:
 				result = (Integer.parseInt(fDec) - Integer.parseInt(sDec));
 				break;
-			case multiplicacion:
+			case multiplication:
 				result = (Integer.parseInt(fDec) * Integer.parseInt(sDec));
 				break;
 			case division:
 				result = (Integer.parseInt(fDec) / Integer.parseInt(sDec));
 				break;
 			}
-			log("\n" + getResultsInAllBases(result));
+			log(getResultsInAllBases(to, result));
 		} catch (InvalidFormatException e) {
 			log("\n" + e.getMessage());
 		} catch (Exception e) {
@@ -113,8 +113,15 @@ public class CalculatorActivity extends BaseActivity {
 		}
 	}
 
-	private String getResultsInAllBases(long result) {
-		String s = "Results:";
+	/**
+	 * Obtener el resultado a mostrar en la consola
+	 * 
+	 * @param result
+	 *            String
+	 * @return
+	 */
+	private String getResultsInAllBases(TipoOperacion to, long result) {
+		String s = "The result of the " + to.name() + " operation is:";
 		s += "\n" + " - In Binary is: " + Long.toString(result, 2);
 		s += "\n" + " - In Octal is: " + Long.toString(result, 8);
 		s += "\n" + " - In Decimal is: " + Long.toString(result, 10);
