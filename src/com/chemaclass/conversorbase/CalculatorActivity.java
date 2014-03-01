@@ -34,33 +34,36 @@ public class CalculatorActivity extends BaseActivity {
 		btDividir = (Button) findViewById(R.id.btDividir);
 
 		btCleanOutput = (Button) findViewById(R.id.btCleanOutput);
+		// Añadimos los listener a los botones
+		addButtonsListener();
+	}
 
+	/**
+	 * Añadir los listeners a los botones
+	 */
+	private void addButtonsListener() {
 		btSumar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				lastTypeOperation = TipoOperacion.sum;
-				operar(lastTypeOperation);
+				preoperar(TipoOperacion.sum);
 			}
 		});
 		btRestar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				lastTypeOperation = TipoOperacion.subtraction;
-				operar(lastTypeOperation);
+				preoperar(TipoOperacion.subtraction);
 			}
 		});
 		btMultiplicar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				lastTypeOperation = TipoOperacion.multiplication;
-				operar(lastTypeOperation);
+				preoperar(TipoOperacion.multiplication);
 			}
 		});
 		btDividir.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				lastTypeOperation = TipoOperacion.division;
-				operar(lastTypeOperation);
+				preoperar(TipoOperacion.division);
 			}
 		});
 		// Borrar el segundo campo de entrada
@@ -70,6 +73,33 @@ public class CalculatorActivity extends BaseActivity {
 				etOutput.setText(null);
 			}
 		});
+	}
+
+	/**
+	 * Comprobamos si los datos son válidos
+	 * 
+	 * @return
+	 */
+	private boolean youCanDoThis() {
+		
+		
+	
+		return true;
+	}
+
+	/**
+	 * Antes de realizar la operación tenemos que pasar por unos validadores que
+	 * nos aseguren que los datos están bien introducidos
+	 * 
+	 * @param to TipoOperación 
+	 */
+	private void preoperar(TipoOperacion to) {
+		if (youCanDoThis()) {
+			lastTypeOperation = to;
+			operar(lastTypeOperation);
+		} else {
+			msg("Comprueba que los datos sean correctos...", 0);
+		}
 	}
 
 	@Override
@@ -156,10 +186,10 @@ public class CalculatorActivity extends BaseActivity {
 	 */
 	@Override
 	protected String getTextResult() {
-		String input1 = etInput.getText().toString() ;
+		String input1 = etInput.getText().toString();
 		String input2 = etOutput.getText().toString();
-		String f = input1+ "(" + conversorInput.name()+ ")";
-		String s = input2 + "(" + conversorOutput.name()+ ")";
+		String f = input1 + "(" + conversorInput.name() + ")";
+		String s = input2 + "(" + conversorOutput.name() + ")";
 		String resul = f + s;
 		resul += operar(lastTypeOperation);
 		return resul;
