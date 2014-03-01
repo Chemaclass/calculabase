@@ -5,8 +5,16 @@ import java.util.Calendar;
 import com.chemaclass.conversorbase.BaseActivity.Conversor;
 import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
+/**
+ * Librería con las utilidades
+ * 
+ * @author chemaclass
+ *
+ */
 public class Utils {
 
+	/** URL del autor @Chemaclass */
+	public static final String URL_CHEMACLASS = "http://www.chemaclass.com";
 	/** URL de la app Conversor Base! */
 	public static final String URL_PLAY_CONVERSOR_BASE = "https://play.google.com/store/apps/details?id=com.chemaclass.conversorbase";
 	/** URL de todas las apps de José María Valera Reales */

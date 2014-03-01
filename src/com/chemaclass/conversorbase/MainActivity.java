@@ -8,21 +8,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.chemaclass.conversorbase.BaseActivity.Conversor;
 import com.chemaclass.conversorbase.base.Base;
-import com.chemaclass.conversorbase.base.Binary;
-import com.chemaclass.conversorbase.base.Decimal;
-import com.chemaclass.conversorbase.base.Hexadecimal;
-import com.chemaclass.conversorbase.base.Octal;
 import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class MainActivity extends BaseActivity {
@@ -35,18 +24,6 @@ public class MainActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		init();
-	}
-
-	/**
-	 * Para hacer pruebas
-	 * 
-	 * @deprecated
-	 */
-	@Deprecated
-	private void test() {
-		spInput.setSelection(3);// {Binario=>0, Octal=>1, Decimal=>2, Hexa=>3}
-		spOutput.setSelection(2);//
-		etInput.setText("1004F43D0");
 	}
 
 	private void init() {
@@ -92,7 +69,7 @@ public class MainActivity extends BaseActivity {
 		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.action_web:
-			uri = Uri.parse("http://www.chemaclass.com");
+			uri = Uri.parse(Utils.URL_CHEMACLASS);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(browserIntent);
 			return true;

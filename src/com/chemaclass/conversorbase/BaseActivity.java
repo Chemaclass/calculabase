@@ -1,11 +1,8 @@
 package com.chemaclass.conversorbase;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -21,7 +18,6 @@ import com.chemaclass.conversorbase.base.Decimal;
 import com.chemaclass.conversorbase.base.Hexadecimal;
 import com.chemaclass.conversorbase.base.Octal;
 import com.chemaclass.conversorbase.listeners.HexaOnFocusChangeListener;
-import com.chemaclass.conversorbase.listeners.MyOnItemSelectedListener;
 
 public abstract class BaseActivity extends Activity {
 
@@ -49,19 +45,6 @@ public abstract class BaseActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		init();
-
-	}
-
-	/**
-	 * Para hacer pruebas
-	 * 
-	 * @deprecated
-	 */
-	@Deprecated
-	private void test() {
-		spInput.setSelection(3);// {Binario=>0, Octal=>1, Decimal=>2, Hexa=>3}
-		spOutput.setSelection(2);//
-		etInput.setText("1004F43D0");
 	}
 
 	private void init() {
@@ -278,14 +261,6 @@ public abstract class BaseActivity extends Activity {
 		et.setText(s);
 		// colocamos el cursor delante de la letra puesta
 		et.setSelection(start + 1);
-	}
-
-	private String getTextResult() {
-		return getResources().getString(R.string.convert) + " "
-				+ etInput.getText().toString() + " "
-				+ getResources().getString(R.string.in) + " " + baseInput.me()
-				+ " " + getResources().getString(R.string.to) + " "
-				+ conversorOutput.name() + ": " + etOutput.getText().toString();
 	}
 
 	/**
