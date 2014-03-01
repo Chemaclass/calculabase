@@ -170,13 +170,13 @@ public abstract class BaseActivity extends Activity {
 					conversorOutput = Conversor.Hexadecimal;
 					// Si nuestra instancia se corresponde con la calculadora y
 					// el foco lo tiene el segundo input
-					if (getApplicationContext() instanceof CalculatorActivity
-							&& getWindow().getCurrentFocus().equals(etOutput))
+					if (getWindow().getCurrentFocus().equals(etOutput)
+					/* && getApplicationContext() instanceof CalculatorActivity */)
 						layoutBtnHexadecimal
 								.setVisibility(LinearLayout.VISIBLE);
 					break;
 				}
-				// msg("input: " + baseInput.me(), 0);
+				msg("input: " + baseInput.me(), 0);
 			}
 
 			@Override
