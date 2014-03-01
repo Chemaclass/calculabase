@@ -47,7 +47,7 @@ public class AboutMeActivity extends Activity {
 			return true;
 		case R.id.action_share:
 			String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
-			String text_to_send = "Try 'Conversor Base! APP' " + url_app;
+			String text_to_send = "Try 'CalculaBase APP' " + url_app;
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);

@@ -332,7 +332,7 @@ public abstract class BaseActivity extends Activity {
 					&& etConsola.getText().length() > 0) {
 				String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
 				String text_to_send = getTextResult()
-						+ "\nby 'Conversor Base! APP' " + url_app;
+						+ "\nby 'CalculaBase APP' " + url_app;
 				Intent sendIntent = new Intent();
 				sendIntent.setAction(Intent.ACTION_SEND);
 				sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
