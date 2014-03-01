@@ -1,4 +1,4 @@
-package com.chemaclass.conversorbase.listeners;
+package com.chemaclass.calculabase.listeners;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.chemaclass.conversorbase.base.Base;
+import com.chemaclass.calculabase.base.Base;
 
 /**
  * Construiremos un objeto al que le pasaremos el spinner y el linerlayout. De

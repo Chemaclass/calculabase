@@ -1,7 +1,7 @@
-package com.chemaclass.conversorbase.base;
+package com.chemaclass.calculabase.base;
 
-import com.chemaclass.conversorbase.MainActivity;
-import com.chemaclass.conversorbase.Utils;
+import com.chemaclass.calculabase.MainActivity;
+import com.chemaclass.calculabase.Utils;
 
 public class Hexadecimal implements Base {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chemaclass.conversorbase"
+    package="com.chemaclass.calculabase"
     android:versionCode="8"
     android:versionName="2.4" >
 
@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.chemaclass.conversorbase.MainActivity"
+            android:name="com.chemaclass.calculabase.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.chemaclass.conversorbase.AboutMeActivity"
+            android:name="com.chemaclass.calculabase.AboutMeActivity"
             android:label="@string/activity_aboutme" >
         </activity>
         <activity
-            android:name="com.chemaclass.conversorbase.CalculatorActivity"
-            android:label="@string/title_activity_calculator" >
+            android:name="com.chemaclass.calculabase.CalculatorActivity"
+            android:label="@string/app_name" >
         </activity>
     </application>
 

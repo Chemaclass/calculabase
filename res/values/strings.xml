@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Conversor Base!</string>
+    <string name="app_name">CalculaBase</string>
+    <string name="title_activity_conversor">Conversor Base!"</string>
+    <string name="title_activity_calculator">Calculator Base!</string>
+    
     <string name="activity_aboutme">About Me</string>
     <string name="convertir">Convert!</string>
     <string name="invertir">Reverse</string>
@@ -37,7 +40,7 @@ And now you have a calculator of numbers in different bases. Enjoy it!</string>
 
     <!-- <string name="key">value</string> -->
 
-    <string name="title_activity_calculator">Calculator Base!</string>
+    
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
