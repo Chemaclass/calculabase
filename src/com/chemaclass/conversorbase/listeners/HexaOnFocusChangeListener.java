@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.chemaclass.conversorbase.base.Base;
 
@@ -31,7 +30,6 @@ public class HexaOnFocusChangeListener implements OnFocusChangeListener {
 
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
-		String s = "\nid: " + mSpinner.getSelectedItemId();
 		// Si tiene el foco y su base es HEXA
 		if (hasFocus && mSpinner.getSelectedItemId() == Base.HEXADECIMAL) {
 			mLinearLayout.setVisibility(LinearLayout.VISIBLE);
