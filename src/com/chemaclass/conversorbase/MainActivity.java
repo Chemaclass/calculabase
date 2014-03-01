@@ -101,8 +101,7 @@ public class MainActivity extends BaseActivity {
 			startActivity(intent);
 			return true;
 		case R.id.action_more:
-			uri = Uri
-					.parse(Utils.URL_PLAY_JMVR);
+			uri = Uri.parse(Utils.URL_PLAY_JMVR);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(browserIntent);
 			return true;
@@ -127,6 +126,7 @@ public class MainActivity extends BaseActivity {
 			}
 			return true;
 		case R.id.action_calculator:
+			finish();
 			intent = new Intent(this, CalculatorActivity.class);
 			startActivity(intent);
 			return true;
@@ -160,17 +160,11 @@ public class MainActivity extends BaseActivity {
 				msg(getResources().getString(R.string.input_error), 0);
 				return;
 			}
-			/*
-			 * log("" + getResources().getString(R.string.convert) + " " +
-			 * baseInput.me() + " " + "(" + input + ") " +
-			 * getResources().getString(R.string.to) + " " +
-			 * conversorOutput.name() + ": " + "\n");
-			 */
 
 			try {
 				result = getConversionBy(input, baseInput, conversorOutput);
 			} catch (InvalidFormatException e) {
-				e.printStackTrace();
+				result = e.getMessage();
 			}
 
 			etOutput.setText(result); // resultado
@@ -181,7 +175,8 @@ public class MainActivity extends BaseActivity {
 			// Toast 0=>'corto', 1=>'largo'
 			msg(getResources().getString(R.string.input_error), 0);
 		}
-		etInput.requestFocus();
+		//Devolvemos el foco al input
+		etInput.requestFocus();		
 	}
 
 	private String getConversionBy(String input, Base baseInput,

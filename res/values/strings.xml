@@ -27,6 +27,7 @@
     <string name="action_options">Options</string>
     <string name="action_calculator">Calculator</string>
     <string name="action_return">Return</string>
+    <string name="action_conversor">Conversor</string>
     <string name="action_twitter">Follow me on Twitter!</string>
     <string name="description">Converter by binary, octal, decimal and hexadecimal to all.
 Explanation of each step in the conversion.
@@ -40,9 +41,15 @@ Share with your friends your conversions!</string>
 
     <string name="first">First number</string> 
     <string name="second">Second number</string> 
+    
     <string name="sumar">+</string> 
     <string name="restar">-</string> 
     <string name="multiplicar">*</string> 
     <string name="dividir">/</string> 
+    
+    <string name="suma">Sum</string> 
+    <string name="resta">Subtraction </string> 
+    <string name="multiplicacion">Multiplication </string> 
+    <string name="dividision">Division</string> 
     
 </resources>

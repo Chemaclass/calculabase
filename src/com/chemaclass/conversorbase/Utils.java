@@ -11,10 +11,9 @@ public class Utils {
 	public static final String URL_PLAY_CONVERSOR_BASE = "https://play.google.com/store/apps/details?id=com.chemaclass.conversorbase";
 	/** URL de todas las apps de José María Valera Reales */
 	public static final String URL_PLAY_JMVR = "https://play.google.com/store/apps/developer?id=Jos%C3%A9%20Mar%C3%ADa%20Valera%20Reales";
-	
+
 	/**
-	 * Obtener la conversión de un número conociendo su base en la base que se
-	 * quiera
+	 * Obtener la conversión de un número conociendo su base en decimal
 	 * 
 	 * @param input
 	 *            Número base
@@ -39,14 +38,34 @@ public class Utils {
 		return null;
 	}
 
+	/**
+	 * Obtener el binario de un decimal
+	 * 
+	 * @param s 
+	 * @return
+	 */
 	public static String getBinaryByDecimal(String s) {
 		return String.valueOf(Integer.parseInt(s, 10));
 	}
 
+	/**
+	 * Obtener el decimal de un binario
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static String getDecimalByBinary(String s) {
 		return String.valueOf(Integer.parseInt(s, 2));
 	}
 
+	/** 
+	 * Obtener el binario de cualquier número conociendo su base
+	 * de forma detallada
+	 * 
+	 * @param input
+	 * @param base
+	 * @return
+	 */
 	public static String getBinaryByDecimal(String input, int base) {
 		String resultado = "";
 		long aux = Long.parseLong(input);

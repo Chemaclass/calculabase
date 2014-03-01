@@ -1,20 +1,13 @@
 package com.chemaclass.conversorbase;
 
-import com.chemaclass.conversorbase.BaseActivity.Conversor;
-import com.chemaclass.conversorbase.base.Binary;
-import com.chemaclass.conversorbase.base.Decimal;
-import com.chemaclass.conversorbase.base.Hexadecimal;
-import com.chemaclass.conversorbase.base.Octal;
-import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.AdapterView.OnItemSelectedListener;
+
+import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class CalculatorActivity extends BaseActivity {
 
@@ -76,6 +69,8 @@ public class CalculatorActivity extends BaseActivity {
 		switch (item.getItemId()) {
 		case R.id.action_return:
 			finish();
+			Intent intent = new Intent(this, MainActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
