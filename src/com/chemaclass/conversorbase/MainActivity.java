@@ -175,10 +175,22 @@ public class MainActivity extends BaseActivity {
 			// Toast 0=>'corto', 1=>'largo'
 			msg(getResources().getString(R.string.input_error), 0);
 		}
-		//Devolvemos el foco al input
-		etInput.requestFocus();		
+		// Devolvemos el foco al input
+		etInput.requestFocus();
 	}
 
+	/**
+	 * Obtener la conversión
+	 * 
+	 * @param input
+	 *            String
+	 * @param baseInput
+	 *            Base "en qué base vinene"
+	 * @param conversorOutput
+	 *            Conversor "a qué base va"
+	 * @return String con la conversión realizada y su explicación
+	 * @throws InvalidFormatException
+	 */
 	private String getConversionBy(String input, Base baseInput,
 			Conversor conversorOutput) throws InvalidFormatException {
 		switch (conversorOutput) {
@@ -194,6 +206,11 @@ public class MainActivity extends BaseActivity {
 		return null;
 	}
 
+	/**
+	 * Obtener el resultadoo a mostrar en la consola
+	 * 
+	 * @return string
+	 */
 	private String getTextResult() {
 		return getResources().getString(R.string.convert) + " "
 				+ etInput.getText().toString() + " "
