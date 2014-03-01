@@ -121,7 +121,7 @@ public class CalculatorActivity extends BaseActivity {
 	 * @return
 	 */
 	private String getResultsInAllBases(TipoOperacion to, long result) {
-		String s = "The result of the " + to.name() + " operation is:";
+		String s = "The results of the " + to.name() + " operation:";
 		s += "\n" + " - In Binary is: " + Long.toString(result, 2);
 		s += "\n" + " - In Octal is: " + Long.toString(result, 8);
 		s += "\n" + " - In Decimal is: " + Long.toString(result, 10);
