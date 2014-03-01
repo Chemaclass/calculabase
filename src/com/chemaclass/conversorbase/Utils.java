@@ -3,11 +3,15 @@ package com.chemaclass.conversorbase;
 import java.util.Calendar;
 
 import com.chemaclass.conversorbase.BaseActivity.Conversor;
-import com.chemaclass.conversorbase.base.Base;
 import com.chemaclass.conversorbase.exceptions.InvalidFormatException;
 
 public class Utils {
 
+	/** URL de la app Conversor Base! */
+	public static final String URL_PLAY_CONVERSOR_BASE = "https://play.google.com/store/apps/details?id=com.chemaclass.conversorbase";
+	/** URL de todas las apps de José María Valera Reales */
+	public static final String URL_PLAY_JMVR = "https://play.google.com/store/apps/developer?id=Jos%C3%A9%20Mar%C3%ADa%20Valera%20Reales";
+	
 	/**
 	 * Obtener la conversión de un número conociendo su base en la base que se
 	 * quiera

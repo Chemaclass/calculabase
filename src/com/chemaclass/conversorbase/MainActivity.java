@@ -102,7 +102,7 @@ public class MainActivity extends BaseActivity {
 			return true;
 		case R.id.action_more:
 			uri = Uri
-					.parse("https://play.google.com/store/apps/developer?id=Jos%C3%A9%20Mar%C3%ADa%20Valera%20Reales");
+					.parse(Utils.URL_PLAY_JMVR);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(browserIntent);
 			return true;
@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity {
 			if (etOutput.getText().length() > 0
 					&& etInput.getText().length() > 0
 					&& etConsola.getText().length() > 0) {
-				String url_app = "https://play.google.com/store/apps/details?id=com.chemaclass.conversorbase";
+				String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
 				String text_to_send = getTextResult()
 						+ "\nby 'Conversor Base! APP' " + url_app;
 				Intent sendIntent = new Intent();
@@ -135,14 +135,6 @@ public class MainActivity extends BaseActivity {
 			return super.onOptionsItemSelected(item);
 		}
 
-	}
-
-	private String getTextResult() {
-		return getResources().getString(R.string.convert) + " "
-				+ etInput.getText().toString() + " "
-				+ getResources().getString(R.string.in) + " " + baseInput.me()
-				+ " " + getResources().getString(R.string.to) + " "
-				+ conversorOutput.name() + ": " + etOutput.getText().toString();
 	}
 
 	/**
@@ -205,6 +197,14 @@ public class MainActivity extends BaseActivity {
 			return baseInput.toHexadecimal(input);
 		}
 		return null;
+	}
+
+	private String getTextResult() {
+		return getResources().getString(R.string.convert) + " "
+				+ etInput.getText().toString() + " "
+				+ getResources().getString(R.string.in) + " " + baseInput.me()
+				+ " " + getResources().getString(R.string.to) + " "
+				+ conversorOutput.name() + ": " + etOutput.getText().toString();
 	}
 
 	/**

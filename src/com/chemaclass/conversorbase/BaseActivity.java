@@ -22,8 +22,7 @@ import com.chemaclass.conversorbase.base.Octal;
 public abstract class BaseActivity extends Activity {
 
 	protected enum Conversor {
-
-		Binary, Octal, Hexadecimal, Decimal
+		Binary, Octal, Decimal, Hexadecimal
 	}
 
 	/** Tipo de base para la salida */
@@ -79,11 +78,11 @@ public abstract class BaseActivity extends Activity {
 		adapter.add(getResources().getString(R.string.octal)); // octal
 		adapter.add(getResources().getString(R.string.decimal)); // decimal
 		adapter.add(getResources().getString(R.string.hexadecimal)); // hexadecimal
-		// añadimos el adapter a nuestros spinner
+		// añadimos el adapter a nuestros spinner y establecemos valores default
 		spInput.setAdapter(adapter);
-		spInput.setSelection(2);// Decimal-> 3
+		spInput.setSelection(Base.DECIMAL);// Decimal-> 3
 		spOutput.setAdapter(adapter);
-		spOutput.setSelection(0);// Binario-> 0
+		spOutput.setSelection(Base.BINARIO);// Binario-> 0
 
 		spInput.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
@@ -218,28 +217,29 @@ public abstract class BaseActivity extends Activity {
 	private void printLetter(String letter) {
 		// El foco está en el primer campo de texto
 		if (getWindow().getCurrentFocus().equals(etInput)) {
-			
-			String input = etInput.getText().toString();
-			// Obtenemos la posición actual del cursor
-			int start = etInput.getSelectionStart();
-			// introducimos la letra A en la posición del cursor
-			String s = input.substring(0, start) + letter
-					+ input.substring(start);
-			etInput.setText(s);
-			// colocamos el cursor delante de la letra puesta
-			etInput.setSelection(start + 1);
+			printEdit(etInput, letter);
 		} else {
-			// O el foco está en el segundo campo de texto
-			String input = etOutput.getText().toString();
-			// Obtenemos la posición actual del cursor
-			int start = etOutput.getSelectionStart();
-			// introducimos la letra A en la posición del cursor
-			String s = input.substring(0, start) + letter
-					+ input.substring(start);
-			etOutput.setText(s);
-			// colocamos el cursor delante de la letra puesta
-			etOutput.setSelection(start + 1);
+			printEdit(etOutput, letter);
 		}
+	}
+
+	/**
+	 * 
+	 * @param et
+	 *            EditText sobre el cual vamos a renderizar
+	 * @param letter
+	 *            String letra a pintar
+	 */
+	private void printEdit(EditText et, String letter) {
+		// O el foco está en el segundo campo de texto
+		String input = etOutput.getText().toString();
+		// Obtenemos la posición actual del cursor
+		int start = etOutput.getSelectionStart();
+		// introducimos la letra A en la posición del cursor
+		String s = input.substring(0, start) + letter + input.substring(start);
+		etOutput.setText(s);
+		// colocamos el cursor delante de la letra puesta
+		etOutput.setSelection(start + 1);
 	}
 
 	private String getTextResult() {
