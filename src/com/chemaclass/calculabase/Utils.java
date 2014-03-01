@@ -19,7 +19,9 @@ public class Utils {
 	public static final String URL_PLAY_CONVERSOR_BASE = "https://play.google.com/store/apps/details?id=com.chemaclass.calculabase";
 	/** URL de todas las apps de José María Valera Reales */
 	public static final String URL_PLAY_JMVR = "https://play.google.com/store/apps/developer?id=Jos%C3%A9%20Mar%C3%ADa%20Valera%20Reales";
-
+	/** Cuenta de Twitter */
+	public static final String TWITTER_CHEMACLASS = "@Chemaclass";
+	public static final String URL_TWITTER_CHEMACLASS = "https://twitter.com/Chemaclass";
 	/**
 	 * Obtener la conversión de un número conociendo su base en decimal
 	 * 

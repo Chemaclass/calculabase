@@ -1,6 +1,5 @@
 package com.chemaclass.calculabase;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -25,7 +24,7 @@ public class AboutMeActivity extends Activity {
 		String str = getResources().getString(R.string.description);
 
 		tvDescripcion.setText(str);
-		tvAutor.setText("@Chemaclass");
+		tvAutor.setText(Utils.TWITTER_CHEMACLASS);
 	}
 
 	@Override
@@ -41,13 +40,13 @@ public class AboutMeActivity extends Activity {
 		Intent browserIntent;
 		switch (item.getItemId()) {
 		case R.id.action_twitter:
-			uri = Uri.parse(Utils.URL_CHEMACLASS);
+			uri = Uri.parse(Utils.URL_TWITTER_CHEMACLASS);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
 			startActivity(browserIntent);
 			return true;
 		case R.id.action_share:
-			String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
-			String text_to_send = "Try 'CalculaBase APP' " + url_app;
+			String text_to_send = getResources().getString(R.string.try_app)
+					+ Utils.URL_PLAY_CONVERSOR_BASE;
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);

@@ -22,6 +22,8 @@
     <string name="convert">Convert</string>
     <string name="to">to</string>
     <string name="in">in</string>
+    <string name="what">What conversion?</string>
+    <string name="try_app">Try \'CalculaBase APP\'</string>    
     <string name="action_share">Share</string>
     <string name="action_share_app">Share App</string>
     <string name="action_more">More apps</string>

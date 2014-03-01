@@ -313,6 +313,11 @@ public abstract class BaseActivity extends Activity {
 		Intent browserIntent;
 		Intent intent;
 		switch (item.getItemId()) {
+		case R.id.action_twitter:
+			uri = Uri.parse(Utils.URL_TWITTER_CHEMACLASS);
+			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+			startActivity(browserIntent);
+			return true;
 		case R.id.action_web:
 			uri = Uri.parse(Utils.URL_CHEMACLASS);
 			browserIntent = new Intent(Intent.ACTION_VIEW, uri);
@@ -342,7 +347,7 @@ public abstract class BaseActivity extends Activity {
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
 			} else {
-				String str = "What conversion?";
+				String str = getResources().getString(R.string.what);
 				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT)
 						.show();
 			}
