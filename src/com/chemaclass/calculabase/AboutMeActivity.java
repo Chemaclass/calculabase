@@ -24,7 +24,7 @@ public class AboutMeActivity extends Activity {
 
 		String str = getResources().getString(R.string.description);
 		String str2 = getResources().getString(R.string.description_2);
-		
+
 		tvDescripcion.setText(str);
 		tvDescripcion2.setText(str2);
 		tvAutor.setText(Utils.TWITTER_CHEMACLASS);
@@ -49,7 +49,7 @@ public class AboutMeActivity extends Activity {
 			return true;
 		case R.id.action_share:
 			String text_to_send = getResources().getString(R.string.try_app)
-					+ Utils.URL_PLAY_CONVERSOR_BASE;
+					+ " " + Utils.URL_PLAY_CONVERSOR_BASE;
 			Intent sendIntent = new Intent();
 			sendIntent.setAction(Intent.ACTION_SEND);
 			sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
