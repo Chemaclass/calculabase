@@ -12,6 +12,12 @@ import android.widget.Toast;
 import com.chemaclass.calculabase.base.Base;
 import com.chemaclass.calculabase.exceptions.InvalidFormatException;
 
+/**
+ * Clase que controla el conversor
+ * 
+ * @author chemaclass
+ *
+ */
 public class MainActivity extends BaseActivity {
 
 	protected Button btConvertir, btInvertir;

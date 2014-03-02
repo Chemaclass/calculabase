@@ -22,6 +22,14 @@ import com.chemaclass.calculabase.base.Hexadecimal;
 import com.chemaclass.calculabase.base.Octal;
 import com.chemaclass.calculabase.listeners.HexaOnFocusChangeListener;
 
+/**
+ * Clase Base de la que heredarán el conversor y la calculadora. En esta clase
+ * se instancian la mayoría de componentes visuales que se repetirán en ambas
+ * vistas, permitiéndonos así ahorrarnos el código
+ * 
+ * @author chemaclass
+ * 
+ */
 public abstract class BaseActivity extends Activity {
 
 	public enum Conversor {

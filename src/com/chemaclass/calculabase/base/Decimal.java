@@ -3,6 +3,12 @@ package com.chemaclass.calculabase.base;
 import com.chemaclass.calculabase.MainActivity;
 import com.chemaclass.calculabase.Utils;
 
+/**
+ * Clase encargada de hacer las conversiones de origen decimal
+ * 
+ * @author chemaclass
+ *
+ */
 public class Decimal implements Base {
 
 	@Override

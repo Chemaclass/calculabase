@@ -10,7 +10,12 @@ import android.widget.Button;
 import com.chemaclass.calculabase.base.Base;
 import com.chemaclass.calculabase.exceptions.InvalidFormatException;
 
-
+/**
+ * Clase que controla la calculadora
+ * 
+ * @author chemaclass
+ *
+ */
 public class CalculatorActivity extends BaseActivity {
 
 	enum TipoOperacion {
@@ -80,7 +85,7 @@ public class CalculatorActivity extends BaseActivity {
 	/**
 	 * Comprobamos si los datos son válidos
 	 * 
-	 * @return
+	 * @return true: todo correcto || false: algo no es correcto
 	 */
 	private boolean youCanDoThis() {
 		String input1 = etInput.getText().toString();
@@ -211,7 +216,7 @@ public class CalculatorActivity extends BaseActivity {
 	 * 
 	 * @param result
 	 *            String
-	 * @return
+	 * @return String 
 	 */
 	private String getResultsInAllBases(TipoOperacion to, long result) {
 		String s = "The results of the " + to.name() + " operation:";

@@ -8,6 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+/**
+ * Clase donde se describe la app
+ * 
+ * @author chemaclass
+ * 
+ */
 public class AboutMeActivity extends Activity {
 
 	private TextView tvDescripcion, tvDescripcion2;

@@ -5,6 +5,12 @@ import java.util.StringTokenizer;
 import com.chemaclass.calculabase.MainActivity;
 import com.chemaclass.calculabase.Utils;
 
+/**
+ * Clase encargada de hacer las conversiones de origen binario
+ * 
+ * @author chemaclass
+ *
+ */
 public class Binary implements Base {
 
 	@Override
