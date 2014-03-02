@@ -155,7 +155,7 @@ public abstract class BaseActivity extends Activity {
 					int position, long id) {
 				// ocultar los botones si estamos en la calculadora
 				if (getWindow().getCurrentFocus().equals(etOutput)
-						&& getApplicationContext() instanceof CalculatorActivity) {
+				/* && getApplicationContext() instanceof CalculatorActivity */) {
 					layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
 				}
 				switch (position) {
@@ -177,7 +177,7 @@ public abstract class BaseActivity extends Activity {
 					// Si nuestra instancia se corresponde con la calculadora y
 					// el foco lo tiene el segundo input
 					if (getWindow().getCurrentFocus().equals(etOutput)
-							&& getApplicationContext() instanceof CalculatorActivity) {
+					/* && getApplicationContext() instanceof CalculatorActivity */) {
 						layoutBtnHexadecimal
 								.setVisibility(LinearLayout.VISIBLE);
 					}
