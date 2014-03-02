@@ -339,8 +339,8 @@ public abstract class BaseActivity extends Activity {
 					&& etInput.getText().length() > 0
 					&& etConsola.getText().length() > 0) {
 				String url_app = Utils.URL_PLAY_CONVERSOR_BASE;
-				String text_to_send = getTextResult()
-						+ "\nby 'CalculaBase APP' " + url_app;
+				String text_to_send = getTextResult() + "\n"
+						+ getResources().getString(R.string.by) + url_app;
 				Intent sendIntent = new Intent();
 				sendIntent.setAction(Intent.ACTION_SEND);
 				sendIntent.putExtra(Intent.EXTRA_TEXT, text_to_send);
@@ -366,6 +366,7 @@ public abstract class BaseActivity extends Activity {
 
 	/**
 	 * Pintar el resultado por pantalla
+	 * 
 	 * @return
 	 */
 	protected abstract String getTextResult();

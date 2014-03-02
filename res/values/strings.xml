@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+	<string name="by">by CalculaBase APP</string>
     <string name="app_name">CalculaBase</string>
     <string name="title_activity_conversor">Conversor Base!"</string>
     <string name="title_activity_calculator">Calculator Base!</string>
