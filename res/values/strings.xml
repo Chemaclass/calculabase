@@ -4,7 +4,6 @@
     <string name="app_name">CalculaBase</string>
     <string name="title_activity_conversor">Conversor Base!"</string>
     <string name="title_activity_calculator">Calculator Base!</string>
-    
     <string name="activity_aboutme">About Me</string>
     <string name="convertir">Convert!</string>
     <string name="invertir">Reverse</string>
@@ -23,7 +22,7 @@
     <string name="to">to</string>
     <string name="in">in</string>
     <string name="what">What conversion?</string>
-    <string name="try_app">Try \'CalculaBase APP\'</string>    
+    <string name="try_app">Try \'CalculaBase APP\'</string>
     <string name="action_share">Share</string>
     <string name="action_share_app">Share App</string>
     <string name="action_more">More apps</string>
@@ -36,29 +35,23 @@
     <string name="action_twitter">Follow me on Twitter!</string>
     <string name="description">Converter by binary, octal, decimal and hexadecimal to all.
 Explanation of each step in the conversion.
-Share with your friends your conversions!
-
-And now you have a calculator of numbers in different bases. Enjoy it!</string>
+Share with your friends your conversions!</string>
+    <string name="description_2">And now you have a calculator of numbers in different bases. Enjoy it!</string>
 
     <!-- <string name="key">value</string> -->
 
-    
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
-    <string name="first">First number</string> 
-    <string name="second">Second number</string> 
-    
-    <string name="sumar">+</string> 
-    <string name="restar">-</string> 
-    <string name="multiplicar">*</string> 
-    <string name="dividir">/</string> 
-    
-    <string name="suma">Sum</string> 
-    <string name="resta">Subtraction </string> 
-    <string name="multiplicacion">Multiplication </string> 
-    <string name="dividision">Division</string> 
-    
+    <string name="first">First number</string>
+    <string name="second">Second number</string>
+    <string name="sumar">+</string>
+    <string name="restar">-</string>
+    <string name="multiplicar">*</string>
+    <string name="dividir">/</string>
+    <string name="suma">Sum</string>
+    <string name="resta">Subtraction </string>
+    <string name="multiplicacion">Multiplication </string>
+    <string name="dividision">Division</string>
     <string name="verify">Verify that the information is correct</string>
-    
+
 </resources>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class AboutMeActivity extends Activity {
 
-	private TextView tvDescripcion;
+	private TextView tvDescripcion, tvDescripcion2;
 	private TextView tvAutor;
 
 	@Override
@@ -19,11 +19,14 @@ public class AboutMeActivity extends Activity {
 		setContentView(R.layout.activity_aboutme);
 
 		tvDescripcion = (TextView) findViewById(R.id.tvDescripcion);
+		tvDescripcion2 = (TextView) findViewById(R.id.tvDescripcion2);
 		tvAutor = (TextView) findViewById(R.id.tvAutor);
 
 		String str = getResources().getString(R.string.description);
-
+		String str2 = getResources().getString(R.string.description_2);
+		
 		tvDescripcion.setText(str);
+		tvDescripcion2.setText(str2);
 		tvAutor.setText(Utils.TWITTER_CHEMACLASS);
 	}
 
