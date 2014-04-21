@@ -19,13 +19,50 @@ public interface Base {
 	/** Base hexadecimal */
 	int HEXADECIMAL = 3;
 
+	/**
+	 * Convertir a Binario
+	 * 
+	 * @param input
+	 *            String
+	 * @return String
+	 * @throws InvalidFormatException
+	 */
 	String toBinary(String input) throws InvalidFormatException;
 
+	/**
+	 * Convertir a Octal
+	 * 
+	 * @param input
+	 *            String
+	 * @return String
+	 * @throws InvalidFormatException
+	 */
 	String toOctal(String input) throws InvalidFormatException;
 
+	/**
+	 * Convertir a Decimal
+	 * 
+	 * @param input
+	 *            String
+	 * @return String
+	 * @throws InvalidFormatException
+	 */
 	String toDecimal(String input) throws InvalidFormatException;
 
+	/**
+	 * Convertir a Hexadecimal
+	 * 
+	 * @param input
+	 *            String
+	 * @return String
+	 * @throws InvalidFormatException
+	 */
 	String toHexadecimal(String input) throws InvalidFormatException;
 
+	/**
+	 * Devuelve el nombre de la clase
+	 * 
+	 * @return String
+	 */
 	String me();
 }

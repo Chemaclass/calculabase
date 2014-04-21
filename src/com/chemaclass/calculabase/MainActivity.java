@@ -16,7 +16,7 @@ import com.chemaclass.calculabase.exceptions.InvalidFormatException;
  * Clase que controla el conversor
  * 
  * @author chemaclass
- *
+ * 
  */
 public class MainActivity extends BaseActivity {
 
@@ -154,21 +154,21 @@ public class MainActivity extends BaseActivity {
 	 */
 	protected void invertir() {
 		// Cambiamos los Spinners
-		//int inputSelect = spInput.getSelectedItemPosition();
-		int lsatInputSelect =(int) spInput.getSelectedItemId();
+		// int inputSelect = spInput.getSelectedItemPosition();
+		int lsatInputSelect = (int) spInput.getSelectedItemId();
 		int lastOutputSelect = spOutput.getSelectedItemPosition();
 		spOutput.setSelection(lsatInputSelect);
 		spInput.setSelection(lastOutputSelect);
-		
+
 		// cambiamos los textos
 		String input = etInput.getText().toString();
 		String output = etOutput.getText().toString();
 		etInput.setText(output);
 		etOutput.setText(input);
-		//Además, si el spInput es HEXA lo mostramos
+		// Además, si el spInput es HEXA lo mostramos
 		if (lastOutputSelect == Base.HEXADECIMAL) {
 			layoutBtnHexadecimal.setVisibility(LinearLayout.VISIBLE);
-		}else{//en caso contrario, lo ocultamos
+		} else {// en caso contrario, lo ocultamos
 			layoutBtnHexadecimal.setVisibility(LinearLayout.GONE);
 		}
 	}
